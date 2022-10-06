@@ -17,10 +17,15 @@ def root():
         counter = 0
     else:
         counter += 1
-    cache[f"data{counter}"] = [counter] * 1_000_000
+    if counter >= 250:
+        counter = 250
     cache["counter"] = counter
+    ret = cache.get(f"data{counter}", None)
+    if ret is None:
+        cache[f"data{counter}"] = [0] * 100_000
+        ret = cache[f"data{counter}"]
 
     message = f"process={os.getpid()} thread={threading.get_ident()}"
     logger.info(message)
 
-    return {"message": counter}
+    return {"message": "Hello World"}

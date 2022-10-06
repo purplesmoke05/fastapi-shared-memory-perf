@@ -30,11 +30,9 @@ class DictCache:
     USE_CACHE = {
         "tokens": {
             # NOTE:
-            # Default size is about 100 record.(Assuming that the average size of tokens is about 1500)
-            # Incremental is about 10 record.
-            "default_size": 15155,
+            "default_size": 102400,
             "is_extend_size": True,
-            "extend_incremental": 1638,
+            "extend_incremental": 2048,
         },
     }
 
@@ -256,7 +254,6 @@ class DictCache:
         self.cache["data"]._memory_block = new_shared_memory
         # NOTE: Save update data independent of @lock decorator.(Avoid deadlock)
         self.cache["data"]._save_memory(update_data)
-        logger.info(f"|thread={threading.get_ident()}| Extend Done for WRITE")
 
         # Update Cache Sizes
         tmp_cache_sizes = {}
@@ -264,6 +261,7 @@ class DictCache:
         tmp_cache_sizes[self.name] = mod_size
         # NOTE: Save cache sizes data independent of @lock decorator.(Avoid deadlock)
         DictCache.cache_sizes._save_memory(tmp_cache_sizes)
+        logger.info(f"|thread={threading.get_ident()}| Extend Done for WRITE")
 
 
 DictCache.initialize()
