@@ -1,0 +1,4 @@
+fastapi==0.85.0
+uvicorn==0.18.3
+gunicorn==20.1.0
+shared-memory-dict==0.5.0

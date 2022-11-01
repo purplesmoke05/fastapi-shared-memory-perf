@@ -3,15 +3,17 @@ Build....
 Start Server....
 Initial Mem Usage
 ==========================================
-fastapi-py310-normal: 72.52MiB / 7.75GiB
-fastapi-py310-shared: 79.2MiB / 7.75GiB
+fastapi-py310-normal: 84.22MiB / 7.75GiB
+fastapi-py310-shared: 81.59MiB / 7.75GiB
+fastapi-py3110-normal: 94.25MiB / 7.75GiB
+fastapi-py3110-shared: 88.13MiB / 7.75GiB
 ==========================================
 Run fastapi-py310-normal
 ==========================================
 Run vegeta to Normal(200req/sec, 10sec)
-Requests      [total, rate, throughput]         2000, 200.12, 200.10
-Duration      [total, attack, wait]             9.995s, 9.994s, 1.097ms
-Latencies     [min, mean, 50, 90, 95, 99, max]  836µs, 1.496ms, 1.25ms, 1.729ms, 1.903ms, 4.375ms, 49.637ms
+Requests      [total, rate, throughput]         2000, 200.12, 200.09
+Duration      [total, attack, wait]             9.995s, 9.994s, 1.622ms
+Latencies     [min, mean, 50, 90, 95, 99, max]  883µs, 1.512ms, 1.205ms, 1.536ms, 1.708ms, 4.663ms, 68.367ms
 Bytes In      [total, mean]                     50000, 25.00
 Bytes Out     [total, mean]                     0, 0.00
 Success       [ratio]                           100.00%
@@ -21,148 +23,130 @@ Error Set:
 Run fastapi-py310-shared
 ==========================================
 Run vegeta to Shared(200req/sec, 10sec)
-Requests      [total, rate, throughput]         2000, 200.13, 5.57
-Duration      [total, attack, wait]             39.686s, 9.994s, 29.692s
-Latencies     [min, mean, 50, 90, 95, 99, max]  631µs, 5.093s, 1.659ms, 29.888s, 30.001s, 30.001s, 30.005s
-Bytes In      [total, mean]                     35298, 17.65
+Requests      [total, rate, throughput]         2000, 200.12, 6.07
+Duration      [total, attack, wait]             16.47s, 9.994s, 6.477s
+Latencies     [min, mean, 50, 90, 95, 99, max]  22.054ms, 3.142s, 3.074s, 5.225s, 7.05s, 8.533s, 10.882s
+Bytes In      [total, mean]                     39697, 19.85
 Bytes Out     [total, mean]                     0, 0.00
-Success       [ratio]                           11.05%
-Status Codes  [code:count]                      0:212  200:221  503:1567  
+Success       [ratio]                           5.00%
+Status Codes  [code:count]                      0:1  200:100  500:558  503:1341  
 Error Set:
+500 Internal Server Error
 503 Service Unavailable
-Get "http://fastapi-py310-shared:5000/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+Get "http://fastapi-py310-shared:5000/": read tcp 192.168.48.3:47453->192.168.48.2:5000: read: connection reset by peer
+==========================================
+Run fastapi-py3110-normal
+==========================================
+Run vegeta to Normal(200req/sec, 10sec)
+Requests      [total, rate, throughput]         2000, 200.11, 200.09
+Duration      [total, attack, wait]             9.995s, 9.995s, 930µs
+Latencies     [min, mean, 50, 90, 95, 99, max]  825µs, 1.52ms, 1.099ms, 1.414ms, 1.556ms, 5.317ms, 82.133ms
+Bytes In      [total, mean]                     50000, 25.00
+Bytes Out     [total, mean]                     0, 0.00
+Success       [ratio]                           100.00%
+Status Codes  [code:count]                      200:2000  
+Error Set:
+==========================================
+Run fastapi-py3110-shared
+==========================================
+Run vegeta to Shared(200req/sec, 10sec)
+Requests      [total, rate, throughput]         2000, 200.15, 17.40
+Duration      [total, attack, wait]             18.913s, 9.992s, 8.921s
+Latencies     [min, mean, 50, 90, 95, 99, max]  803µs, 2.647s, 232.14ms, 7.666s, 15.025s, 17.409s, 17.701s
+Bytes In      [total, mean]                     40968, 20.48
+Bytes Out     [total, mean]                     0, 0.00
+Success       [ratio]                           16.45%
+Status Codes  [code:count]                      200:329  500:497  503:1174  
+Error Set:
+500 Internal Server Error
+503 Service Unavailable
+==========================================
 After Requests Mem Usage
+fastapi-py310-normal: 76.85MiB / 7.75GiB
+fastapi-py310-shared: 3.167GiB / 7.75GiB
+fastapi-py3110-normal: 83.98MiB / 7.75GiB
+fastapi-py3110-shared: 3.634GiB / 7.75GiB
 ==========================================
-fastapi-py310-normal: 75.81MiB / 7.75GiB
-fastapi-py310-shared: 156.2MiB / 7.75GiB
-==========================================
-=[LOG] Processed successfully(Normal)=====
-PID: 114, OutputLogs: 675
-PID: 115, OutputLogs: 628
-PID: 116, OutputLogs: 2
-PID: 117, OutputLogs: 692
-PID: 126, OutputLogs: 3
-PID: 128, OutputLogs: 0
+=[LOG] Processed successfully(Python3.10 Normal)=====
+PID: 114, OutputLogs: 595
+PID: 115, OutputLogs: 620
+PID: 116, OutputLogs: 285
+PID: 117, OutputLogs: 499
+PID: 127, OutputLogs: 1
 PID: 129, OutputLogs: 0
-=[LOG] Exceeded concurrency limit(Normal)=
+=[LOG] Exceeded concurrency limit(Python3.10 Normal)=
 PID: 114, OutputLogs: 0
 PID: 115, OutputLogs: 0
 PID: 116, OutputLogs: 0
 PID: 117, OutputLogs: 0
-PID: 126, OutputLogs: 0
-PID: 128, OutputLogs: 0
+PID: 127, OutputLogs: 0
 PID: 129, OutputLogs: 0
-=[LOG] Shutting down(Normal)==============
+=[LOG] Shutting down(Python3.10 Normal)==============
 PID: 114, OutputLogs: 1
 PID: 115, OutputLogs: 1
 PID: 116, OutputLogs: 0
-PID: 117, OutputLogs: 1
-PID: 126, OutputLogs: 0
+PID: 117, OutputLogs: 0
+PID: 127, OutputLogs: 0
+PID: 129, OutputLogs: 0
+=[LOG] Processed successfully(Python3.11.0 Normal)=====
+PID: 114, OutputLogs: 177
+PID: 113, OutputLogs: 580
+PID: 115, OutputLogs: 611
+PID: 116, OutputLogs: 632
+PID: 127, OutputLogs: 0
 PID: 128, OutputLogs: 0
 PID: 129, OutputLogs: 0
-=[LOG] Processed successfully(Shared)=====
-PID: 115, OutputLogs: 99
-PID: 116, OutputLogs: 91
-PID: 117, OutputLogs: 102
-PID: 118, OutputLogs: 83
-PID: 279, OutputLogs: 0
-=[LOG] Exceeded concurrency limit(Shared)=
-PID: 115, OutputLogs: 224
-PID: 116, OutputLogs: 316
-PID: 117, OutputLogs: 381
-PID: 118, OutputLogs: 646
-PID: 279, OutputLogs: 0
-=[LOG] Shutting down(Shared)==============
+=[LOG] Exceeded concurrency limit(Python3.11.0 Normal)=
+PID: 114, OutputLogs: 0
+PID: 113, OutputLogs: 0
+PID: 115, OutputLogs: 0
+PID: 116, OutputLogs: 0
+PID: 127, OutputLogs: 0
+PID: 128, OutputLogs: 0
+PID: 129, OutputLogs: 0
+=[LOG] Shutting down(Python3.11.0 Normal)==============
+PID: 114, OutputLogs: 0
+PID: 113, OutputLogs: 1
+PID: 115, OutputLogs: 1
+PID: 116, OutputLogs: 1
+PID: 127, OutputLogs: 0
+PID: 128, OutputLogs: 0
+PID: 129, OutputLogs: 0
+=[LOG] Processed successfully(Python3.10 Shared)=====
+PID: 116, OutputLogs: 25
+PID: 115, OutputLogs: 27
+PID: 117, OutputLogs: 40
+PID: 118, OutputLogs: 20
+PID: 274, OutputLogs: 0
+=[LOG] Exceeded concurrency limit(Python3.10 Shared)=
+PID: 116, OutputLogs: 525
+PID: 115, OutputLogs: 366
+PID: 117, OutputLogs: 242
+PID: 118, OutputLogs: 208
+PID: 274, OutputLogs: 0
+=[LOG] Shutting down(Python3.10 Shared)==============
+PID: 116, OutputLogs: 1
+PID: 115, OutputLogs: 0
+PID: 117, OutputLogs: 0
+PID: 118, OutputLogs: 0
+PID: 274, OutputLogs: 0
+=[LOG] Cached Memory(Python3.10 Shared)==============
+=[LOG] Processed successfully(Python3.11.0 Shared)=====
+PID: 115, OutputLogs: 87
+PID: 116, OutputLogs: 82
+PID: 117, OutputLogs: 81
+PID: 118, OutputLogs: 85
+=[LOG] Exceeded concurrency limit(Python3.11.0 Shared)=
+PID: 115, OutputLogs: 240
+PID: 116, OutputLogs: 325
+PID: 117, OutputLogs: 305
+PID: 118, OutputLogs: 304
+=[LOG] Shutting down(Python3.11.0 Shared)==============
 PID: 115, OutputLogs: 0
 PID: 116, OutputLogs: 0
 PID: 117, OutputLogs: 0
-PID: 118, OutputLogs: 1
-PID: 279, OutputLogs: 0
-=[LOG] Cached Memory(Shared)==============
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for WRITE. 102400 => 200704
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473590378976| Extend Done for WRITE
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 102400 => 200704
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 102400 => 200704
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 102400 => 200704
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for WRITE. 200704 => 401408
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Done for WRITE
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473581986272| Extend Shared Memory Object Mapping Size for READ. 200704 => 401408
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473581986272| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473500312032| Extend Shared Memory Object Mapping Size for READ. 200704 => 401408
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473500312032| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 200704 => 401408
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for WRITE. 401408 => 602112
-[2022-10-06 13:59:36 +0000] [115] [INFO] |thread=281473590378976| Extend Done for WRITE
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473580982752| Extend Shared Memory Object Mapping Size for READ. 401408 => 602112
-[2022-10-06 13:59:36 +0000] [116] [INFO] |thread=281473580982752| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 401408 => 602112
-[2022-10-06 13:59:36 +0000] [117] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for READ. 401408 => 602112
-[2022-10-06 13:59:36 +0000] [118] [INFO] |thread=281473590378976| Extend Done for READ
-[2022-10-06 13:59:37 +0000] [117] [INFO] |thread=281473590378976| Extend Shared Memory Object Mapping Size for WRITE. 602112 => 802816
-[2022-10-06 13:59:37 +0000] [117] [INFO] |thread=281473590378976| Extend Done for WRITE
-[2022-10-06 13:59:37 +0000] [116] [INFO] |thread=281473458348512| Extend Shared Memory Object Mapping Size for READ. 602112 => 802816
-[2022-10-06 13:59:37 +0000] [116] [INFO] |thread=281473458348512| Extend Done for READ
-[2022-10-06 13:59:37 +0000] [118] [INFO] |thread=281472887939552| Extend Shared Memory Object Mapping Size for READ. 602112 => 802816
-[2022-10-06 13:59:37 +0000] [118] [INFO] |thread=281472887939552| Extend Done for READ
-[2022-10-06 13:59:37 +0000] [115] [INFO] |thread=281473581986272| Extend Shared Memory Object Mapping Size for READ. 602112 => 802816
-[2022-10-06 13:59:37 +0000] [115] [INFO] |thread=281473581986272| Extend Done for READ
-[2022-10-06 13:59:39 +0000] [116] [INFO] |thread=281473491919328| Extend Shared Memory Object Mapping Size for WRITE. 802816 => 1001472
-[2022-10-06 13:59:39 +0000] [116] [INFO] |thread=281473491919328| Extend Done for WRITE
-[2022-10-06 13:59:39 +0000] [117] [INFO] |thread=281471780626912| Extend Shared Memory Object Mapping Size for READ. 802816 => 1001472
-[2022-10-06 13:59:39 +0000] [117] [INFO] |thread=281471780626912| Extend Done for READ
-[2022-10-06 13:59:39 +0000] [115] [INFO] |thread=281471252148704| Extend Shared Memory Object Mapping Size for READ. 802816 => 1001472
-[2022-10-06 13:59:39 +0000] [115] [INFO] |thread=281471252148704| Extend Done for READ
-[2022-10-06 13:59:39 +0000] [118] [INFO] |thread=281472871154144| Extend Shared Memory Object Mapping Size for READ. 802816 => 1001472
-[2022-10-06 13:59:39 +0000] [118] [INFO] |thread=281472871154144| Extend Done for READ
-[2022-10-06 13:59:42 +0000] [115] [INFO] |thread=281471780626912| Extend Shared Memory Object Mapping Size for WRITE. 1001472 => 1202176
-[2022-10-06 13:59:42 +0000] [115] [INFO] |thread=281471780626912| Extend Done for WRITE
-[2022-10-06 13:59:42 +0000] [118] [INFO] |thread=281473581986272| Extend Shared Memory Object Mapping Size for READ. 1001472 => 1202176
-[2022-10-06 13:59:42 +0000] [118] [INFO] |thread=281473581986272| Extend Done for READ
-[2022-10-06 13:59:42 +0000] [116] [INFO] |thread=281472325890528| Extend Shared Memory Object Mapping Size for READ. 1001472 => 1202176
-[2022-10-06 13:59:42 +0000] [116] [INFO] |thread=281472325890528| Extend Done for READ
-[2022-10-06 13:59:42 +0000] [117] [INFO] |thread=281473581986272| Extend Shared Memory Object Mapping Size for READ. 1001472 => 1202176
-[2022-10-06 13:59:42 +0000] [117] [INFO] |thread=281473581986272| Extend Done for READ
-[2022-10-06 13:59:49 +0000] [116] [INFO] |thread=281472325890528| Extend Shared Memory Object Mapping Size for WRITE. 1202176 => 1402880
-[2022-10-06 13:59:49 +0000] [116] [INFO] |thread=281472325890528| Extend Done for WRITE
-[2022-10-06 13:59:50 +0000] [117] [INFO] |thread=281471797412320| Extend Shared Memory Object Mapping Size for READ. 1202176 => 1402880
-[2022-10-06 13:59:50 +0000] [117] [INFO] |thread=281471797412320| Extend Done for READ
-[2022-10-06 13:59:50 +0000] [115] [INFO] |thread=281473466741216| Extend Shared Memory Object Mapping Size for READ. 1202176 => 1402880
-[2022-10-06 13:59:50 +0000] [115] [INFO] |thread=281473466741216| Extend Done for READ
-[2022-10-06 13:59:50 +0000] [118] [INFO] |thread=281472871154144| Extend Shared Memory Object Mapping Size for READ. 1202176 => 1402880
-[2022-10-06 13:59:50 +0000] [118] [INFO] |thread=281472871154144| Extend Done for READ
-[2022-10-06 13:59:57 +0000] [117] [INFO] |thread=281473500312032| Extend Shared Memory Object Mapping Size for WRITE. 1402880 => 1603584
-[2022-10-06 13:59:57 +0000] [117] [INFO] |thread=281473500312032| Extend Done for WRITE
-[2022-10-06 13:59:57 +0000] [116] [INFO] |thread=281471235363296| Extend Shared Memory Object Mapping Size for READ. 1402880 => 1603584
-[2022-10-06 13:59:57 +0000] [116] [INFO] |thread=281471235363296| Extend Done for READ
-[2022-10-06 13:59:57 +0000] [115] [INFO] |thread=281470748848608| Extend Shared Memory Object Mapping Size for READ. 1402880 => 1603584
-[2022-10-06 13:59:57 +0000] [115] [INFO] |thread=281470748848608| Extend Done for READ
-[2022-10-06 13:59:57 +0000] [118] [INFO] |thread=281472854368736| Extend Shared Memory Object Mapping Size for READ. 1402880 => 1603584
-[2022-10-06 13:59:57 +0000] [118] [INFO] |thread=281472854368736| Extend Done for READ
-[2022-10-06 14:00:04 +0000] [118] [INFO] |thread=281473466741216| Extend Shared Memory Object Mapping Size for WRITE. 1603584 => 1802240
-[2022-10-06 14:00:04 +0000] [118] [INFO] |thread=281473466741216| Extend Done for WRITE
-[2022-10-06 14:00:04 +0000] [115] [INFO] |thread=281472845976032| Extend Shared Memory Object Mapping Size for READ. 1603584 => 1802240
-[2022-10-06 14:00:04 +0000] [115] [INFO] |thread=281472845976032| Extend Done for READ
-[2022-10-06 14:00:04 +0000] [117] [INFO] |thread=281472862761440| Extend Shared Memory Object Mapping Size for READ. 1603584 => 1802240
-[2022-10-06 14:00:04 +0000] [117] [INFO] |thread=281472862761440| Extend Done for READ
-[2022-10-06 14:00:04 +0000] [116] [INFO] |thread=281473475133920| Extend Shared Memory Object Mapping Size for READ. 1603584 => 1802240
-[2022-10-06 14:00:04 +0000] [116] [INFO] |thread=281473475133920| Extend Done for READ
-[2022-10-06 14:00:12 +0000] [117] [INFO] |thread=281472351068640| Extend Shared Memory Object Mapping Size for WRITE. 1802240 => 2002944
-[2022-10-06 14:00:12 +0000] [117] [INFO] |thread=281472351068640| Extend Done for WRITE
-[2022-10-06 14:00:12 +0000] [115] [INFO] |thread=281472351068640| Extend Shared Memory Object Mapping Size for READ. 1802240 => 2002944
-[2022-10-06 14:00:12 +0000] [115] [INFO] |thread=281472351068640| Extend Done for READ
-[2022-10-06 14:00:13 +0000] [116] [INFO] |thread=281472845976032| Extend Shared Memory Object Mapping Size for READ. 1802240 => 2002944
-[2022-10-06 14:00:13 +0000] [116] [INFO] |thread=281472845976032| Extend Done for READ
-[2022-10-06 14:00:20 +0000] [117] [INFO] |thread=281472854368736| Extend Shared Memory Object Mapping Size for WRITE. 2002944 => 2203648
-[2022-10-06 14:00:20 +0000] [117] [INFO] |thread=281472854368736| Extend Done for WRITE
-[2022-10-06 14:00:20 +0000] [115] [INFO] |thread=281472359461344| Extend Shared Memory Object Mapping Size for READ. 2002944 => 2203648
-[2022-10-06 14:00:20 +0000] [115] [INFO] |thread=281472359461344| Extend Done for READ
-[2022-10-06 14:00:20 +0000] [116] [INFO] |thread=281473580982752| Extend Shared Memory Object Mapping Size for READ. 2002944 => 2203648
-[2022-10-06 14:00:20 +0000] [116] [INFO] |thread=281473580982752| Extend Done for READ
+PID: 118, OutputLogs: 0
+=[LOG] Cached Memory(Python3.11.0 Shared)==============
 ==========================================
 Cleanup....
 ==========================================
