@@ -1,4 +1,5 @@
 import threading, os
+import random
 from fastapi import FastAPI
 import logging
 
@@ -9,7 +10,8 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-    data = [0] * 1_000_000
+    v = random.random()
+    data = [v] * 5_000_000
 
     message = f"process={os.getpid()} thread={threading.get_ident()}"
     logger.info(message)
