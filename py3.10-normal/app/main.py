@@ -8,9 +8,9 @@ app = FastAPI()
 
 
 @app.get("/")
-def root():
-    data = [0] * 100_000
+async def root():
+    data = [0] * 1_000_000
 
     message = f"process={os.getpid()} thread={threading.get_ident()}"
     logger.info(message)
-    return {"message": "Hello World"}
+    return {"message": data}
